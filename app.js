@@ -2,6 +2,7 @@ const express = require('express'); //after create an express, we can start rout
 const mongoose = require('mongoose'); //Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
 require('dotenv/config'); //Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology.
 const postsRoute = require('./routes/posts'); //import custom Routes
+const notesRoute = require('./routes/notes'); //import custom Routes
 const bodyParser = require('body-parser'); //Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 const cors = require('cors'); //Providing a Connect/Express middleware that can be used to enable CORS
 
@@ -18,6 +19,8 @@ app.use(cors());
 //everytime a request touches posts, we will use postsRoute to response the request
 //so it just like a middleware
 app.use('/posts', postsRoute);
+
+app.use('/notes', notesRoute);
 
 app.get('/', (req, res) => {
     res.end('This is home page / root.');
